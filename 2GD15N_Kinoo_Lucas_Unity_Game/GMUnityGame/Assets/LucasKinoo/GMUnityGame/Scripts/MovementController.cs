@@ -8,20 +8,23 @@ public class MovementController : MonoBehaviour
     [SerializeField] private float movementSpeed = 5f;
 
     // Declare reference variables
-    PlayerControls _playerControls = null;
-    CharacterController _characterController = null;
+    private PlayerControls _playerControls = null;
+    private CharacterController _characterController = null;
+    private Rigidbody _rigidBody = null;
 
     // Variables to store player input values
-    Vector2 _curentMovementInput = Vector2.zero;
-    Vector3 _currentMovement = Vector3.zero;
-    bool _isMovementPressed = false;
+    private Vector2 _curentMovementInput = Vector2.zero;
+    private Vector3 _currentMovement = Vector3.zero;
+    private bool _isMovementPressed = false;
 
     private void Awake()
     {
         // Initially set reference variables
         _playerControls = new PlayerControls();
         _characterController = GetComponent<CharacterController>();
+        _rigidBody = GetComponent<Rigidbody>();
 
+        // Set player input callbacks
         _playerControls.CharacterControls.Move.started += OnMovementInput;
         _playerControls.CharacterControls.Move.canceled += OnMovementInput;
         _playerControls.CharacterControls.Move.performed += OnMovementInput;
