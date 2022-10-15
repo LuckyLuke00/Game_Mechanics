@@ -6,7 +6,7 @@ public class CameraBehaviour : MonoBehaviour
 {
     [SerializeField] private GameObject _player = null;
     [SerializeField] private float _followSpeed = 5f;
-    [SerializeField] private float _disanceFromTarget = 5f;
+    [SerializeField] private float _cameraHeight = 5f;
 
     private void Awake()
     {
@@ -16,11 +16,14 @@ public class CameraBehaviour : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         if (_player != null)
         {
-            transform.position = Vector3.Lerp(transform.position, _player.transform.position + Vector3.back, _followSpeed * Time.deltaTime);
+            // Smoothly move the camera, and prevent the camera from jittering
+            Vector3 position = _player.transform.position;
+            position.y += _cameraHeight;
+            transform.position = Vector3.Lerp(transform.position, position, Time.deltaTime * _followSpeed);
         }
     }
 }
