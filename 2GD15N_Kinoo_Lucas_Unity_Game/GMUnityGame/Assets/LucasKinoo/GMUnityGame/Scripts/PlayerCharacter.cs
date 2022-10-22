@@ -10,6 +10,8 @@ public class PlayerCharacter : BasicCharacter
     
     // Variables to store player input values
     private Vector2 _curentMovementInput = Vector2.zero;
+
+    [SerializeField] private bool _godMode = false;
     
     protected override void Awake()
     {

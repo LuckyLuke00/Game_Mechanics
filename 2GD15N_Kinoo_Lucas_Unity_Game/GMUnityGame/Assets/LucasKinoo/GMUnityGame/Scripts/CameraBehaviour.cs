@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class CameraBehaviour : MonoBehaviour
 {
-    [SerializeField] private GameObject _player = null;
     [SerializeField] private float _followSpeed = 5f;
     [SerializeField] private float _cameraHeight = 5f;
+    
+    private GameObject _player = null;
 
     private void Awake()
     {
+        _player = GameObject.FindGameObjectWithTag("Player");
+
         if (_player == null)
         {
-            _player = GameObject.FindGameObjectWithTag("Player");
+            Debug.LogError("Player not found!");
+            return;
         }
+        transform.position = CalculateCameraPosition();
     }
 
     private void LateUpdate()
@@ -21,9 +26,14 @@ public class CameraBehaviour : MonoBehaviour
         if (_player != null)
         {
             // Smoothly move the camera, and prevent the camera from jittering
-            Vector3 position = _player.transform.position;
-            position.y += _cameraHeight;
-            transform.position = Vector3.Lerp(transform.position, position, Time.deltaTime * _followSpeed);
+            transform.position = Vector3.Lerp(transform.position, CalculateCameraPosition(), Time.deltaTime * _followSpeed);
         }
+    }
+
+    private Vector3 CalculateCameraPosition()
+    {
+        Vector3 position = _player.transform.position;
+        position.y += _cameraHeight;
+        return position;
     }
 }
