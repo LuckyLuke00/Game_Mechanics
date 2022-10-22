@@ -10,7 +10,6 @@ public class EnemyStateManager : MonoBehaviour
     EnemyBaseState _currentState = null;
     public EnemyChaseState _chaseState = new EnemyChaseState();
     public EnemyPatrolState _patrolState = new EnemyPatrolState();
-    public EnemyPatrolStateAlt _patrolStateAlt = new EnemyPatrolStateAlt();
     public EnemySearchState _searchState = new EnemySearchState();
 
     private GameObject _player = null;
@@ -48,7 +47,7 @@ public class EnemyStateManager : MonoBehaviour
         _agent.updateRotation = false;
 
         // Set initial state
-        _currentState = _patrolStateAlt;
+        _currentState = _patrolState;
         _currentState.EnterState(this);
     }
 
@@ -65,6 +64,8 @@ public class EnemyStateManager : MonoBehaviour
 
     public bool PlayerInSight()
     {
+        if (_player == null) return false;
+        
         RaycastHit hit;
         return Physics.Raycast(transform.position, Player.transform.position - transform.position, out hit) && hit.collider.gameObject.tag == "Player";
     }

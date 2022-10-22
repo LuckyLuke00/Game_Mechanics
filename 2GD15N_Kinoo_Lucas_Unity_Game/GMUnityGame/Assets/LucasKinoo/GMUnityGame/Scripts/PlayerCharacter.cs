@@ -40,5 +40,13 @@ public class PlayerCharacter : BasicCharacter
     {
         _playerControls.CharacterControls.Disable();
     }
+
+    public void Kill()
+    {
+        if (!_godMode)
+        {
+            Destroy(gameObject);
+        }
+    }
 }
 

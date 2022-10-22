@@ -23,7 +23,7 @@ public class EnemySearchState : EnemyBaseState
         if (_countDown <= 0f || Vector3.Distance(enemy.transform.position, enemy.Agent.destination) < 1f)
         {
             _countDown = enemy.SearchTime;
-            enemy.SwitchState(enemy._patrolStateAlt);
+            enemy.SwitchState(enemy._patrolState);
         }
         
         _countDown -= Time.deltaTime;
