@@ -11,13 +11,14 @@ GameObject:
   - component: {fileID: 6149136684488289432}
   - component: {fileID: 1168747537859629361}
   - component: {fileID: 7491194500178311807}
-  - component: {fileID: 7482933847048181923}
+  - component: {fileID: -5533964912996351101}
+  - component: {fileID: 6704512168565368312}
   m_Layer: 0
   m_Name: Hedge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 119
   m_IsActive: 1
 --- !u!4 &6149136684488289432
 Transform:
@@ -84,7 +85,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7482933847048181923
+--- !u!65 &-5533964912996351101
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,3 +98,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6704512168565368312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3824107504215864555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01f2ee765e2084e4a80f1d7188ae08f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

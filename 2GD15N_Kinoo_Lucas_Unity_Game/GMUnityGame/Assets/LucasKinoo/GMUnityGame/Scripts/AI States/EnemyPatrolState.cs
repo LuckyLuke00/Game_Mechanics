@@ -6,6 +6,7 @@ public class EnemyPatrolState : EnemyBaseState
     private Vector3 _destination = Vector3.zero;
     public override void EnterState(EnemyStateManager enemy)
     {
+        Debug.Log("Entering Patrol State");
         _destination = GenerateRandomDestination(enemy.SearchRadius);
     }
 
@@ -23,6 +24,12 @@ public class EnemyPatrolState : EnemyBaseState
         }
 
         enemy.Agent.destination = _destination;
+
+        if (enemy.Agent.pathStatus == NavMeshPathStatus.PathPartial)
+        {
+            enemy.Agent.destination = enemy.Agent.pathEndPosition;
+            _destination = GenerateRandomDestination(enemy.SearchRadius);
+        }
 
     }
 

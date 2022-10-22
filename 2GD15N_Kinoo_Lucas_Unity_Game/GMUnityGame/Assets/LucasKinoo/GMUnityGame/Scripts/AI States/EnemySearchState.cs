@@ -6,6 +6,7 @@ public class EnemySearchState : EnemyBaseState
     private float _countDown = 0f;
     public override void EnterState(EnemyStateManager enemy)
     {
+        Debug.Log("Entering Search State");
         _countDown = enemy.SearchTime;
     }
 
@@ -19,19 +20,21 @@ public class EnemySearchState : EnemyBaseState
             enemy.SwitchState(enemy._chaseState);
         }
         
-        if (_countDown <= 0f)
+        if (_countDown <= 0f || Vector3.Distance(enemy.transform.position, enemy.Agent.destination) < 1f)
         {
             _countDown = enemy.SearchTime;
-            enemy.SwitchState(enemy._patrolState);
+            enemy.SwitchState(enemy._patrolStateAlt);
         }
         
         _countDown -= Time.deltaTime;
 
-        enemy.Agent.destination = enemy.Player.transform.position;
-        //if (enemy.Agent.pathStatus == NavMeshPathStatus.PathPartial)
-        //{
-        //    enemy.Agent.destination = enemy.Agent.pathEndPosition;
-        //}
+        if (enemy.Agent.pathStatus == NavMeshPathStatus.PathPartial)
+        {
+            enemy.Agent.destination = enemy.Agent.pathEndPosition;
+            return;
+        }
+
+        enemy.Agent.destination = enemy.LastKnownLocation;
 
     }
 }

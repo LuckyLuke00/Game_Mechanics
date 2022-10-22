@@ -5,6 +5,7 @@ public class EnemyChaseState : EnemyBaseState
 {
     public override void EnterState(EnemyStateManager enemy)
     {
+        Debug.Log("Entering Chase State");
     }
 
     public override void UpdateState(EnemyStateManager enemy)
@@ -16,11 +17,8 @@ public class EnemyChaseState : EnemyBaseState
             enemy.LastKnownLocation = enemy.Player.transform.position;
             return;
         }
-
-        if (Vector3.Distance(enemy.transform.position, enemy.LastKnownLocation) < 1f)
-        {
-            enemy.SwitchState(enemy._searchState);
-        }
+        
+        enemy.SwitchState(enemy._searchState);
 
     }
 }

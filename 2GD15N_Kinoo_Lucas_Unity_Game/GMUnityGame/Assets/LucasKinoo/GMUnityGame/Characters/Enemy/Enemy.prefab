@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 4437665186319885850}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -151,5 +151,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd8d46bcbe86fbf4695b38c0705c1409, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _searchTime: 3
   _searchRadius: 10
+  _searchTime: 3
+  _Waypoints: []
