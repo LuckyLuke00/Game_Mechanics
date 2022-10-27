@@ -9,7 +9,7 @@ public class EnemyPatrolState : EnemyBaseState
     {
         Debug.Log("Entering Patrol State");
         // Go to closest waypoint
-        _destination = GetClosestWaypoint(enemy);
+        _destination = GetClosestWaypointTo(enemy, enemy.Player.transform.position);
     }
 
     public override void UpdateState(EnemyStateManager enemy)
@@ -30,13 +30,13 @@ public class EnemyPatrolState : EnemyBaseState
 
         enemy.Agent.destination = enemy.Waypoints[_destination].position;
     }
-    private int GetClosestWaypoint(EnemyStateManager enemy)
+    private int GetClosestWaypointTo(EnemyStateManager enemy, Vector3 target)
     {
         int closestWaypoint = 0;
         float closestDistance = Mathf.Infinity;
         for (int i = 0; i < enemy.Waypoints.Length; i++)
         {
-            float distance = Vector3.Distance(enemy.transform.position, enemy.Waypoints[i].position);
+            float distance = Vector3.Distance(target, enemy.Waypoints[i].position);
             if (distance < closestDistance)
             {
                 closestDistance = distance;

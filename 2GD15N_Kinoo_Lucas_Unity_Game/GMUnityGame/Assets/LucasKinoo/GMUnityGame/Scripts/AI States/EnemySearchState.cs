@@ -3,38 +3,49 @@ using UnityEngine.AI;
 
 public class EnemySearchState : EnemyBaseState
 {
-    private float _countDown = 0f;
+    private float _lastKnownLocationDistance = 0f;
+    private float _reachDistance = 1f;
+
+
     public override void EnterState(EnemyStateManager enemy)
     {
         Debug.Log("Entering Search State");
-        _countDown = enemy.SearchTime;
+        SpawnTransparentPlayerMesh(enemy);
     }
 
     public override void UpdateState(EnemyStateManager enemy)
     {
         // Keep chasing the player for 5 seconds
-        // If the player is not in sight during that time, switch to patrol state
+        // If the player is not in sight during that time, switch to investigate state
         if (enemy.PlayerInSight())
         {
-            _countDown = enemy.SearchTime;
+            enemy.PlayerGhostMesh.SetActive(false);
+
             enemy.SwitchState(enemy._chaseState);
         }
-        
-        if (_countDown <= 0f || Vector3.Distance(enemy.transform.position, enemy.Agent.destination) < 1f)
-        {
-            _countDown = enemy.SearchTime;
-            enemy.SwitchState(enemy._patrolState);
-        }
-        
-        _countDown -= Time.deltaTime;
 
-        if (enemy.Agent.pathStatus == NavMeshPathStatus.PathPartial)
+        _lastKnownLocationDistance = Vector3.Distance(enemy.transform.position, enemy.LastKnownLocation);
+
+        if (_lastKnownLocationDistance < _reachDistance)
         {
-            enemy.Agent.destination = enemy.Agent.pathEndPosition;
-            return;
+            enemy.PlayerGhostMesh.SetActive(false);
+
+            enemy.SwitchState(enemy._patrolState);
         }
 
         enemy.Agent.destination = enemy.LastKnownLocation;
 
+        if (enemy.Agent.pathStatus == NavMeshPathStatus.PathPartial)
+        {
+            enemy.Agent.destination = enemy.Agent.pathEndPosition;
+        }
+    }
+
+    private void SpawnTransparentPlayerMesh(EnemyStateManager enemy)
+    {
+        // Spawn a semi transparent player mesh at the last known location of the player
+        // This will be used to show the player where the enemy last saw the player
+        enemy.PlayerGhostMesh.transform.position = enemy.LastKnownLocation;
+        enemy.PlayerGhostMesh.SetActive(true);
     }
 }

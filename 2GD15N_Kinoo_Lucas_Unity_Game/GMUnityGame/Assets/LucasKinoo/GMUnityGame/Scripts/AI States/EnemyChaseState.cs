@@ -3,6 +3,7 @@ using UnityEngine.AI;
 
 public class EnemyChaseState : EnemyBaseState
 {
+    private float _timer = 0f;
     public override void EnterState(EnemyStateManager enemy)
     {
         Debug.Log("Entering Chase State");
@@ -10,15 +11,23 @@ public class EnemyChaseState : EnemyBaseState
 
     public override void UpdateState(EnemyStateManager enemy)
     {
+        if (enemy.Player == null) return;
+        
+        _timer += Time.deltaTime;
+
+        if (_timer > enemy.TimeToKeepChasing && !enemy.PlayerInSight())
+        {
+            _timer = 0f;
+            
+            enemy.SwitchState(enemy._searchState);
+        }
+
+        enemy.LastKnownLocation = enemy.Player.transform.position;
         enemy.Agent.destination = enemy.LastKnownLocation;
 
-        if (enemy.PlayerInSight())
+        if (enemy.Agent.pathStatus == NavMeshPathStatus.PathPartial)
         {
-            enemy.LastKnownLocation = enemy.Player.transform.position;
-            return;
+            enemy.Agent.destination = enemy.Agent.pathEndPosition;
         }
-        
-        enemy.SwitchState(enemy._searchState);
-
     }
 }
