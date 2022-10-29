@@ -7,9 +7,12 @@ public class Clock : MonoBehaviour
 
     private bool _isPaused = false;
     private float _time = 0f;
-    private int _minutes = 0;
-    private int _seconds = 0;
-    private int _milliseconds = 0;
+    private float _bestTime = 0f;
+
+    // Getters and Setters
+    public bool IsPaused { get => _isPaused; set => _isPaused = value; }
+    public float LevelTime { get => _time; set => _time = value; }
+    public float BestTime { get => _bestTime; set => _bestTime = value; }
 
     private void Awake()
     {
@@ -19,7 +22,6 @@ public class Clock : MonoBehaviour
         }
 
         DisplayText();
-        StartClock();
     }
 
     private void Update()
@@ -27,33 +29,32 @@ public class Clock : MonoBehaviour
         if (_isPaused) return;
 
         _time += Time.deltaTime;
-        _minutes = (int)_time / 60;
-        _seconds = (int)_time % 60;
-        _milliseconds = (int)(_time * 100) % 100;
 
         DisplayText();
     }
 
     private void DisplayText()
     {
-        _clockText.text = $"{_minutes:0}:{_seconds:00}";
+        _clockText.text = $"{GetMinutes(_time):0}:{GetSeconds(_time):00}";
+    }
+    
+    private int GetMinutes(float time)
+    {
+        return (int) time / 60;
     }
 
-    private void StartClock()
+    private int GetSeconds(float time)
     {
-        _isPaused = false;
+        return (int)time % 60;
     }
 
-    private void StopClock()
+    private int GetMilliseconds(float time)
     {
-        _isPaused = true;
+        return (int)(time * 100) % 100;
     }
 
     private void ResetClock()
     {
         _time = 0f;
-        _minutes = 0;
-        _seconds = 0;
-        _milliseconds = 0;
     }
 }
