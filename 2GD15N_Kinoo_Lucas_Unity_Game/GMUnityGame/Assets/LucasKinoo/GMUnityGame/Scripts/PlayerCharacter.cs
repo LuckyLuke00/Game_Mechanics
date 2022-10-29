@@ -1,10 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerCharacter : BasicCharacter
 {
+
+    public static event Action OnPlayerDeath;
     // Declare reference variables
     private PlayerControls _playerControls = null;
     
@@ -45,6 +46,7 @@ public class PlayerCharacter : BasicCharacter
     {
         if (!_godMode)
         {
+            OnPlayerDeath?.Invoke();
             Destroy(gameObject);
         }
     }

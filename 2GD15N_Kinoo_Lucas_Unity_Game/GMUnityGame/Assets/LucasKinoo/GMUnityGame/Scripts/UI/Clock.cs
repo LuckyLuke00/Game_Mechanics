@@ -36,7 +36,7 @@ public class Clock : MonoBehaviour
 
     private void DisplayText()
     {
-        _clockText.text = $"{_minutes:00}:{_seconds:00}";
+        _clockText.text = $"{_minutes:0}:{_seconds:00}";
     }
 
     private void StartClock()
