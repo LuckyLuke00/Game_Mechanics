@@ -386,7 +386,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 617c18f82813a5047b55c65d3f5ea127, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _clockText: {fileID: 2195900793979397084}
+  _currentTimeText: {fileID: 2195900793979397084}
+  _bestTimeText: {fileID: 835378000159776475}
 --- !u!114 &2184659086229032883
 MonoBehaviour:
   m_ObjectHideFlags: 0

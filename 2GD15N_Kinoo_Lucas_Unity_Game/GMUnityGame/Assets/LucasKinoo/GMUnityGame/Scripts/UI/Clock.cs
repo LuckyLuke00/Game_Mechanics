@@ -3,58 +3,70 @@ using TMPro;
 
 public class Clock : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _clockText = null;
+    [SerializeField] private TextMeshProUGUI _bestTimeText = null;
+    [SerializeField] private TextMeshProUGUI _currentTimeText = null;
 
     private bool _isPaused = false;
-    private float _time = 0f;
+    private float _currentTime = 0f;
     private float _bestTime = 0f;
 
     // Getters and Setters
     public bool IsPaused { get => _isPaused; set => _isPaused = value; }
-    public float LevelTime { get => _time; set => _time = value; }
+    public float CurrentTime { get => _currentTime; set => _currentTime = value; }
     public float BestTime { get => _bestTime; set => _bestTime = value; }
 
     private void Awake()
     {
-        if (_clockText == null)
+        if (_currentTimeText == null)
         {
             Debug.LogError("Clock: Clock text is null!");
         }
 
+        if (_bestTimeText == null)
+        {
+            Debug.LogError("Clock: Best time text is null!");
+        }
+
         DisplayText();
+        Show();
     }
 
     private void Update()
     {
         if (_isPaused) return;
 
-        _time += Time.deltaTime;
+        _currentTime += Time.deltaTime;
 
         DisplayText();
     }
 
     private void DisplayText()
     {
-        _clockText.text = $"{GetMinutes(_time):0}:{GetSeconds(_time):00}";
-    }
-    
-    private int GetMinutes(float time)
-    {
-        return (int) time / 60;
+        _currentTimeText.text = $"{GetTimeText(_currentTime)}";
+        
+        _bestTimeText.text = $"{GetTimeText(_bestTime)}";
     }
 
-    private int GetSeconds(float time)
+    // Get the time in m:ss::mmm format with a bool to display the miliseconds
+    public string GetTimeText(float time, bool displayMiliseconds = false)
     {
-        return (int)time % 60;
-    }
+        int minutes = Mathf.FloorToInt(time / 60);
+        int seconds = Mathf.FloorToInt(time % 60);
+        int miliseconds = Mathf.FloorToInt((time * 1000) % 1000);
 
-    private int GetMilliseconds(float time)
-    {
-        return (int)(time * 100) % 100;
-    }
+        if (displayMiliseconds)
+        {
+            return $"{minutes:0}:{seconds:00}:{miliseconds:000}";
+        }
 
-    private void ResetClock()
+        return $"{minutes:0}:{seconds:00}";
+    }
+    public void Hide()
     {
-        _time = 0f;
+        gameObject.SetActive(false);
+    }
+    public void Show()
+    {
+        gameObject.SetActive(true);
     }
 }
