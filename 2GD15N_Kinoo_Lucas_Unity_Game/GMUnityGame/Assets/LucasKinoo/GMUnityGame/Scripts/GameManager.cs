@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
     }
     public void RestartGame()
     {
+        Collectible._total = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 

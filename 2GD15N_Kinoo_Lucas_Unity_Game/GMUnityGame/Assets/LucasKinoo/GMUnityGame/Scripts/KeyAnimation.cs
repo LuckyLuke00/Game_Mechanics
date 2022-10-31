@@ -16,7 +16,9 @@ public class KeyAnimation : MonoBehaviour
     private void Update()
     {
         transform.Rotate(Vector3.up * _rotationSpeed * Time.deltaTime);
-        transform.position = _startPosition + Vector3.up * Mathf.Sin(Time.time * _floatSpeed) * _floatHeight;
+        // The minimum height is at the start position and the maximum height is at the start position + floatHeight
+        float height = Mathf.Sin(Time.time * _floatSpeed) * _floatHeight + _startPosition.y;
+        transform.position = new Vector3(transform.position.x, height, transform.position.z);
     }
 
 }
