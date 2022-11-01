@@ -950,6 +950,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7256875599224473353, guid: d81a4cd3e014fe5408d68734596ff395, type: 3}
+      propertyPath: _godMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d81a4cd3e014fe5408d68734596ff395, type: 3}
 --- !u!4 &283514762 stripped
@@ -6803,7 +6807,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1805223830139007157, guid: c5902ce5f89d07a468726c8c59a9de97, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12
+      value: 22.5
       objectReference: {fileID: 0}
     - target: {fileID: 1805223830139007157, guid: c5902ce5f89d07a468726c8c59a9de97, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6811,7 +6815,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1805223830139007157, guid: c5902ce5f89d07a468726c8c59a9de97, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -17
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 1805223830139007157, guid: c5902ce5f89d07a468726c8c59a9de97, type: 3}
       propertyPath: m_LocalRotation.w
