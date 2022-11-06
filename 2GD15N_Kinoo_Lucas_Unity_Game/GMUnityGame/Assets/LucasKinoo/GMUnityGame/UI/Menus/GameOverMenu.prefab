@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -953,8 +953,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6935ac9d3908bba4fb9e20c22e9f1207, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _defaultSubtitle: NOT COMPLETED
-  _subtitleText: {fileID: 2483430264839833562}
+  _subtitle: {fileID: 2483430264839833562}
 --- !u!1 &4036897203116628888
 GameObject:
   m_ObjectHideFlags: 0

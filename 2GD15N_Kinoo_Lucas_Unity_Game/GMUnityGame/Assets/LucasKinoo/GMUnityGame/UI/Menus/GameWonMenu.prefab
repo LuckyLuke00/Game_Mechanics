@@ -806,8 +806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cabbbe79d15ac64c981e2042bffc015, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _defaultSubtitle: COMPLETED IN X:XX
-  _subtitleText: {fileID: 6999914754198432897}
+  _subtitle: {fileID: 6999914754198432897}
 --- !u!1 &2802186043095983322
 GameObject:
   m_ObjectHideFlags: 0
@@ -1741,7 +1740,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}

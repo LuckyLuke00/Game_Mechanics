@@ -3,12 +3,13 @@ using TMPro;
 
 public class GameWonMenu : MonoBehaviour
 {
-    [SerializeField] private string _defaultSubtitle = "COMPLETED IN X:XX";
-    [SerializeField] private TextMeshProUGUI _subtitleText = null;
+    [SerializeField] private const string _defaultSubtitle = "NOT COMPLETED";
+    [SerializeField] private TextMeshProUGUI _subtitle = null;
+    private string _subtitleText = "";
 
     private void Awake()
     {
-        if (_subtitleText == null)
+        if (_subtitle == null)
         {
             // Log an error
             Debug.LogError("GameOverMenu: Subtitle text is null!");
@@ -16,11 +17,22 @@ public class GameWonMenu : MonoBehaviour
         }
 
         // Set the subtitle text to the default subtitle
-        _subtitleText.text = _defaultSubtitle;
+        _subtitleText = _defaultSubtitle;
+        _subtitle.text = _subtitleText;
     }
     private void Update()
     {
-        _subtitleText.text = _defaultSubtitle;
+        _subtitle.text = _subtitleText;
+    }
+
+    private void OnEnable()
+    {
+        GameManager.OnResetProgress += ProgressReset;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.OnResetProgress -= ProgressReset;
     }
 
     // Display the time it took to complete the level
@@ -29,10 +41,10 @@ public class GameWonMenu : MonoBehaviour
         if (time == "")
         {
             // Error
-            _defaultSubtitle = "TIME NOT FOUND";
+            _subtitleText = "TIME NOT FOUND";
         }
 
-        _defaultSubtitle = $"COMPLETED IN {time}";
+        _subtitleText = $"COMPLETED IN {time}";
     }
     public void Hide()
     {
@@ -43,5 +55,10 @@ public class GameWonMenu : MonoBehaviour
     {
         // Show the game over menu
         gameObject.SetActive(true);
+    }
+
+    public void ProgressReset()
+    {
+        _subtitleText = _defaultSubtitle;
     }
 }
