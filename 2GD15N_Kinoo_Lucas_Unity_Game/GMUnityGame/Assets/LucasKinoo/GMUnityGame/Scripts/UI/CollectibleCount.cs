@@ -3,9 +3,9 @@ using UnityEngine;
 public class CollectibleCount : MonoBehaviour
 {
     [SerializeField] private string _collectibleName = "Collectible";
-    
+
     private int _count = 0;
-    TMPro.TMP_Text _text = null;
+    private TMPro.TMP_Text _text = null;
 
     private void Awake()
     {
@@ -28,6 +28,7 @@ public class CollectibleCount : MonoBehaviour
     {
         Collectible.OnCollectibleCollected += OnCollectibleCollected;
     }
+
     private void OnDisable()
     {
         Collectible.OnCollectibleCollected -= OnCollectibleCollected;
@@ -39,9 +40,9 @@ public class CollectibleCount : MonoBehaviour
         UpdateCount();
     }
 
-    void UpdateCount()
+    private void UpdateCount()
     {
-        // Set only the number Collectible._total color to _hexColor
-        _text.text = $"{_collectibleName}: [ {_count} / {Collectible._total} ]";
+        // Display string in "Collectible: [ 0 / 3 ]" format
+        _text.text = $"{_collectibleName}: [ {_count} / {Collectible.Total} ]";
     }
 }

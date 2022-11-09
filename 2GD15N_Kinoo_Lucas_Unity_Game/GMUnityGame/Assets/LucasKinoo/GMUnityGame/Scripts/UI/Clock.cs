@@ -1,5 +1,5 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class Clock : MonoBehaviour
 {
@@ -12,6 +12,7 @@ public class Clock : MonoBehaviour
 
     // Getters and Setters
     public float CurrentTime { get => _currentTime; set => _currentTime = value; }
+
     public float BestTime { get => _bestTime; set => _bestTime = value; }
 
     private void Awake()
@@ -41,7 +42,7 @@ public class Clock : MonoBehaviour
     private void DisplayText()
     {
         _currentTimeText.text = $"{GetTimeText(_currentTime)}";
-        
+
         _bestTimeText.text = $"{GetTimeText(_bestTime)}";
     }
 

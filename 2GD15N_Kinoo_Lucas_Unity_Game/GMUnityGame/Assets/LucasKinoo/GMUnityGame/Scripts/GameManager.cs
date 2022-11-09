@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     private Clock _clock = null;
     private int _collectibles = 0;
-    
+
     public static event Action OnResetProgress;
 
     //Getter for _collectibles
@@ -14,13 +14,13 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        _clock = FindObjectOfType<Clock>();
+        _clock = FindObjectOfType<Clock>(true);
 
         if (_clock == null)
         {
             Debug.LogError("GameManager: _clock is null!");
         }
-        
+
         LoadHighscores();
     }
 
@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
     private void SaveHighscores()
     {
         _clock.PauseTimer();
-       
+
         // Check if "BestTime" exists
         if (PlayerPrefs.HasKey("BestTime"))
         {
@@ -60,9 +60,10 @@ public class GameManager : MonoBehaviour
     {
         _clock.BestTime = PlayerPrefs.GetFloat("BestTime");
     }
+
     public static void RestartGame()
     {
-        Collectible._total = 0;
+        Collectible.Total = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
@@ -71,6 +72,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.DeleteAll();
         OnResetProgress?.Invoke();
     }
+
     public void QuitGame()
     {
         Application.Quit();
@@ -80,5 +82,7 @@ public class GameManager : MonoBehaviour
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
     }
-    private void OnCollectibleCollected() { ++_collectibles; }
+
+    private void OnCollectibleCollected()
+    { ++_collectibles; }
 }

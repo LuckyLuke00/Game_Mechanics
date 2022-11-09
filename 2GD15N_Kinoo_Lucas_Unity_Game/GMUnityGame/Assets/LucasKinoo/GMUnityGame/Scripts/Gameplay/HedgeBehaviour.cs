@@ -34,11 +34,9 @@ public class HedgeBehaviour : MonoBehaviour
         }
     }
 
-    // When the navmesh agent is in chase mode, disable the box collider
-    // else enable it
+    // When the navmesh agent is in chase mode, disable the box collider else enable it
     private void Update()
     {
-
         if (_enemy.CurrentState == _enemy._chaseState)
         {
             _collider.enabled = false;

@@ -1,10 +1,10 @@
 using UnityEngine;
-using UnityEngine.AI;
 
 public class EnemyPatrolState : EnemyBaseState
 {
     // Use waypoints to patrol and randomly choose a waypoint to go to
     private int _destination = 0;
+
     public override void EnterState(EnemyStateManager enemy)
     {
         Debug.Log("Entering Patrol State");
@@ -14,6 +14,13 @@ public class EnemyPatrolState : EnemyBaseState
 
     public override void UpdateState(EnemyStateManager enemy)
     {
+        // If there are no waypoints, do nothing
+        if (enemy.Waypoints.Length < 1)
+        {
+            Debug.LogError("EnemyPatrolState: No waypoints!");
+            return;
+        }
+
         // Draw a line to the waypoint
         Debug.DrawLine(enemy.transform.position, enemy.Waypoints[_destination].transform.position, Color.red);
 
@@ -30,6 +37,7 @@ public class EnemyPatrolState : EnemyBaseState
 
         enemy.Agent.destination = enemy.Waypoints[_destination].transform.position;
     }
+
     private int GetClosestWaypointTo(EnemyStateManager enemy, Vector3 target)
     {
         int closestWaypoint = 0;

@@ -1,5 +1,5 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class BasicMenu : MonoBehaviour
 {
@@ -18,8 +18,8 @@ public class BasicMenu : MonoBehaviour
             Debug.LogError("BasicMenu: _gameManager is null!");
             return;
         }
-        
-        _clock = FindObjectOfType<Clock>();
+
+        _clock = FindObjectOfType<Clock>(true);
         if (_clock == null)
         {
             Debug.LogError("BasicMenu: _clock is null!");
@@ -42,7 +42,7 @@ public class BasicMenu : MonoBehaviour
     private void Update()
     {
         if (_clock.BestTime < 1) _subtitleText = _defaultSubtitle;
-                _subtitle.text = _subtitleText;
+        _subtitle.text = _subtitleText;
     }
 
     private void OnEnable()
@@ -54,7 +54,7 @@ public class BasicMenu : MonoBehaviour
     {
         GameManager.OnResetProgress -= ProgressReset;
     }
-    
+
     private TextMeshProUGUI GetSubtitle()
     {
         foreach (TextMeshProUGUI title in GetComponentsInChildren<TextMeshProUGUI>())
@@ -66,7 +66,7 @@ public class BasicMenu : MonoBehaviour
         }
         return null;
     }
-    
+
     public static void ProgressReset()
     {
         // Update the text when the progress has been reset
@@ -91,6 +91,10 @@ public class BasicMenu : MonoBehaviour
         // Quit the game
         _gameManager.QuitGame();
     }
-    public void Hide() { gameObject.SetActive(false); }
-    public void Show() { gameObject.SetActive(true); }
+
+    public void Hide()
+    { gameObject.SetActive(false); }
+
+    public void Show()
+    { gameObject.SetActive(true); }
 }

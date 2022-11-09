@@ -4,6 +4,7 @@ using UnityEngine.AI;
 public class EnemyChaseState : EnemyBaseState
 {
     private float _timer = 0f;
+
     public override void EnterState(EnemyStateManager enemy)
     {
         Debug.Log("Entering Chase State");
@@ -12,13 +13,13 @@ public class EnemyChaseState : EnemyBaseState
     public override void UpdateState(EnemyStateManager enemy)
     {
         if (enemy.Player == null) return;
-        
+
         _timer += Time.deltaTime;
 
         if (_timer > enemy.TimeToKeepChasing && !enemy.PlayerInSight())
         {
             _timer = 0f;
-            
+
             enemy.SwitchState(enemy._searchState);
         }
 

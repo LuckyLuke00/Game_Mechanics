@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class MovementBehaviour : MonoBehaviour
 {
@@ -20,6 +17,7 @@ public class MovementBehaviour : MonoBehaviour
     }
 
     protected GameObject _target = null;
+
     public GameObject Target
     {
         get { return _target; }

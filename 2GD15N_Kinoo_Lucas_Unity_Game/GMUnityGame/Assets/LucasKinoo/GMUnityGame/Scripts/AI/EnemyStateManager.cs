@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Rendering;
 
 public class EnemyStateManager : MonoBehaviour
 {
@@ -9,7 +8,7 @@ public class EnemyStateManager : MonoBehaviour
     [SerializeField] private Material _GhostMaterial = null;
     [SerializeField] private GameObject[] _waypoints = null;
 
-    EnemyBaseState _currentState = null;
+    private EnemyBaseState _currentState = null;
     public EnemyChaseState _chaseState = new EnemyChaseState();
     public EnemyPatrolState _patrolState = new EnemyPatrolState();
     public EnemySearchState _searchState = new EnemySearchState();
@@ -21,6 +20,7 @@ public class EnemyStateManager : MonoBehaviour
 
     // Getters and setters
     public EnemyBaseState CurrentState { get => _currentState; }
+
     public float SearchRadius { get => _searchRadius; }
     public float TimeToKeepChasing { get => _TimeToKeepChasing; }
     public GameObject Player { get => _player; set => _player = value; }
@@ -55,7 +55,7 @@ public class EnemyStateManager : MonoBehaviour
             Debug.LogError("EnemyStateManager: _waypoints is null!");
             return;
         }
-        
+
         _PlayerGhostMesh = new GameObject();
         _PlayerGhostMesh.AddComponent<MeshFilter>().mesh = _player.GetComponentInChildren<MeshFilter>().mesh;
         _PlayerGhostMesh.AddComponent<MeshRenderer>().material = _GhostMaterial;
@@ -85,7 +85,7 @@ public class EnemyStateManager : MonoBehaviour
     public bool PlayerInSight()
     {
         if (_player == null) return false;
-        
+
         RaycastHit hit;
         return Physics.Raycast(transform.position, Player.transform.position - transform.position, out hit) && hit.collider.gameObject.tag == "Player";
     }

@@ -4,6 +4,7 @@ using UnityEngine.AI;
 public class EnemyInvestigateState : EnemyBaseState
 {
     private float _investigationTimer = 0f;
+
     public override void EnterState(EnemyStateManager enemy)
     {
         Debug.Log("Entering Investigate State");
@@ -12,10 +13,9 @@ public class EnemyInvestigateState : EnemyBaseState
 
     public override void UpdateState(EnemyStateManager enemy)
     {
-        // Go to the last known position of the target
-        // If the target is in sight, go to the chase state
-        // If the target is not in sight, wander around the last known position for a while
-        
+        // Go to the last known position of the target If the target is in sight, go to the chase
+        // state If the target is not in sight, wander around the last known position for a while
+
         if (enemy.PlayerInSight())
         {
             _investigationTimer = enemy.TimeToKeepChasing;
@@ -35,8 +35,5 @@ public class EnemyInvestigateState : EnemyBaseState
             enemy.Agent.destination = enemy.Agent.pathEndPosition;
             return;
         }
-
-        
-
     }
 }

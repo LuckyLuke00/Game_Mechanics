@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8379668624227861828}
   - component: {fileID: 7998507334266614658}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: HUD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,23 +139,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7741382308065343423, guid: a3d6f35ff7b4f364f9bdbe209fcd9064, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7741382308065343423, guid: a3d6f35ff7b4f364f9bdbe209fcd9064, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7741382308065343423, guid: a3d6f35ff7b4f364f9bdbe209fcd9064, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 960
       objectReference: {fileID: 0}
     - target: {fileID: 7741382308065343423, guid: a3d6f35ff7b4f364f9bdbe209fcd9064, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -75
       objectReference: {fileID: 0}
     - target: {fileID: 9005792537506728600, guid: a3d6f35ff7b4f364f9bdbe209fcd9064, type: 3}
       propertyPath: m_Name
       value: Clock
+      objectReference: {fileID: 0}
+    - target: {fileID: 9005792537506728600, guid: a3d6f35ff7b4f364f9bdbe209fcd9064, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3d6f35ff7b4f364f9bdbe209fcd9064, type: 3}
@@ -175,21 +179,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: KeyCount
       objectReference: {fileID: 0}
+    - target: {fileID: 2101961093909195738, guid: cdf74379306064f4bbec09817e755244, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2230154704721016228, guid: cdf74379306064f4bbec09817e755244, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2230154704721016228, guid: cdf74379306064f4bbec09817e755244, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2230154704721016228, guid: cdf74379306064f4bbec09817e755244, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 960
       objectReference: {fileID: 0}
     - target: {fileID: 2230154704721016228, guid: cdf74379306064f4bbec09817e755244, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -155
       objectReference: {fileID: 0}
     - target: {fileID: 5505389923686715933, guid: cdf74379306064f4bbec09817e755244, type: 3}
       propertyPath: m_Pivot.x

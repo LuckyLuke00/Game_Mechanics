@@ -5,6 +5,7 @@ public class MenuManager : MonoBehaviour
 {
     // Handles opening and closing menus
     private GameOverMenu _gameOverMenu = null;
+
     private GameWonMenu _gameWonMenu = null;
 
     // Create an event for when the menu is active
@@ -12,21 +13,27 @@ public class MenuManager : MonoBehaviour
 
     private void Awake()
     {
-        _gameOverMenu = GetComponentInChildren<GameOverMenu>();
-        _gameWonMenu = GetComponentInChildren<GameWonMenu>();
-
+        _gameOverMenu = GetComponentInChildren<GameOverMenu>(true);
         if (_gameOverMenu == null)
         {
             Debug.LogError("MenuManager: _gameOverMenu is null!");
             return;
         }
 
+        _gameWonMenu = GetComponentInChildren<GameWonMenu>(true);
         if (_gameWonMenu == null)
         {
             Debug.LogError("MenuManager: _gameWonMenu is null!");
             return;
         }
 
+        // Enable all children so that we can disable them in the editor to avoid clutter
+        foreach (Transform child in transform)
+        {
+            child.gameObject.SetActive(true);
+        }
+
+        // Hide the menus
         _gameOverMenu.Hide();
         _gameWonMenu.Hide();
     }

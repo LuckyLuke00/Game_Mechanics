@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,7 +5,7 @@ using UnityEngine.AI;
 public class NavMeshMovementBehaviour : MovementBehaviour
 {
     private NavMeshAgent _navMeshAgent;
-   
+
     private Vector3 _previousTargetPosition = Vector3.zero;
 
     protected override void Awake()
@@ -21,7 +19,7 @@ public class NavMeshMovementBehaviour : MovementBehaviour
         _previousTargetPosition = transform.position;
     }
 
-    const float MOVEMENT_EPSILON = 0.25f;
+    private const float MOVEMENT_EPSILON = 0.25f;
 
     protected override void HandleMovement()
     {
@@ -30,7 +28,6 @@ public class NavMeshMovementBehaviour : MovementBehaviour
             _navMeshAgent.isStopped = true;
             return;
         }
-        
 
         //should the target move we should recaluclate our path
         if ((_target.transform.position - _previousTargetPosition).sqrMagnitude > MOVEMENT_EPSILON)

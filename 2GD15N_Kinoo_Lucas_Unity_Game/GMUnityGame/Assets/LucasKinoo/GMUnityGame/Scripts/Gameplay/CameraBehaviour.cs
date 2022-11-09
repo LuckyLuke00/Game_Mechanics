@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraBehaviour : MonoBehaviour
 {
     [SerializeField] private float _followSpeed = 5f;
     [SerializeField] private float _cameraHeight = 5f;
-    
+
     private GameObject _player = null;
 
     private void Awake()

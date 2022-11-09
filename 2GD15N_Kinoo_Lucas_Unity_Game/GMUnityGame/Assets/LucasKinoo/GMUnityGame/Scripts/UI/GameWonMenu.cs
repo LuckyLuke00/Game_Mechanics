@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class GameWonMenu : BasicMenu
 {
     private void OnEnable()

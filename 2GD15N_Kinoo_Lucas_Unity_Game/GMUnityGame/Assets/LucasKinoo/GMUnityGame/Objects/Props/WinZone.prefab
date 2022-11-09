@@ -503,25 +503,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2422103951096523421, guid: eee2da2624c484d459aafada8d22b855, type: 3}
-      propertyPath: _collectiblesToOpen
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2422103951096523421, guid: eee2da2624c484d459aafada8d22b855, type: 3}
-      propertyPath: _collectiblesNeededToOpen
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 2719717958155194881, guid: eee2da2624c484d459aafada8d22b855, type: 3}
       propertyPath: m_Name
       value: Gate
-      objectReference: {fileID: 0}
-    - target: {fileID: 7374413179827050722, guid: eee2da2624c484d459aafada8d22b855, type: 3}
-      propertyPath: m_Size.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7374413179827050722, guid: eee2da2624c484d459aafada8d22b855, type: 3}
-      propertyPath: m_Center.y
-      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eee2da2624c484d459aafada8d22b855, type: 3}

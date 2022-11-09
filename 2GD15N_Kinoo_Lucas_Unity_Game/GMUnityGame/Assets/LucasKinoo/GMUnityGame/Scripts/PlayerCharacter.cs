@@ -4,16 +4,16 @@ using UnityEngine.InputSystem;
 
 public class PlayerCharacter : BasicCharacter
 {
-
     public static event Action OnPlayerDeath;
+
     // Declare reference variables
     private PlayerControls _playerControls = null;
-    
+
     // Variables to store player input values
     private Vector2 _curentMovementInput = Vector2.zero;
 
     [SerializeField] private bool _godMode = false;
-    
+
     protected override void Awake()
     {
         base.Awake();
@@ -32,11 +32,13 @@ public class PlayerCharacter : BasicCharacter
         _curentMovementInput = ctx.ReadValue<Vector2>();
         _movementBehaviour.CurrentMovement = new Vector3(_curentMovementInput.x, 0, _curentMovementInput.y);
     }
+
     private void OnEnable()
     {
         // Enable the character controls action map
         _playerControls.CharacterControls.Enable();
     }
+
     private void OnDisable()
     {
         _playerControls.CharacterControls.Disable();
@@ -51,4 +53,3 @@ public class PlayerCharacter : BasicCharacter
         }
     }
 }
-

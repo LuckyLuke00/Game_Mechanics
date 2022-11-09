@@ -3,6 +3,11 @@ using UnityEngine;
 public class GateBehaviour : MonoBehaviour
 {
     [SerializeField] private float _gateSpeed = 1f;
+
+    // Checkbox if the gate should only open when all collectibles are collected
+    [SerializeField] private bool _requireAllCollectiblesToOpen = false;
+
+    // When _requireAllCollectiblesToOpen is true disable _collectiblesToOpen
     [SerializeField] private int _collectiblesToOpen = 0;
 
     private BoxCollider _collider = null;
@@ -26,20 +31,33 @@ public class GateBehaviour : MonoBehaviour
             Debug.LogError("EnemyStateManager is null");
             return;
         }
-        
+
         _collider = GetComponent<BoxCollider>();
         if (_collider == null)
         {
             Debug.LogError("BoxCollider is null");
             return;
         }
-        
+
         _collider.enabled = true;
 
         // Get the gate height: y-Scale
         _gateHeight = transform.localScale.y;
+    }
 
-        if (_collectiblesToOpen > Collectible._total) _collectiblesToOpen = Collectible._total;
+    private void Start()
+    {
+        if (_requireAllCollectiblesToOpen)
+        {
+            _collectiblesToOpen = Collectible.Total;
+            return;
+        }
+
+        if (_collectiblesToOpen > Collectible.Total)
+        {
+            Debug.LogWarning("GateBehaviour: _collectiblesToOpen is greater than the total number of collectibles!");
+            _collectiblesToOpen = Collectible.Total;
+        }
     }
 
     private void Update()

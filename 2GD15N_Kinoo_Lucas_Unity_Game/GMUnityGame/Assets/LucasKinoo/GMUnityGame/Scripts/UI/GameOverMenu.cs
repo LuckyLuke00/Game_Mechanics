@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class GameOverMenu : BasicMenu
 {
     private void OnEnable()

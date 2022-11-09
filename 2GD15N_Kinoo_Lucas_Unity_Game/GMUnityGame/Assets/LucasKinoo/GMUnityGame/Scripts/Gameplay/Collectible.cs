@@ -4,14 +4,16 @@ using UnityEngine;
 public class Collectible : MonoBehaviour
 {
     public static event Action OnCollectibleCollected;
-    public static int _total = 0;
+
+    // Getter setter
+    public static int Total { get; set; } = 0;
 
     private void Awake()
     {
-        _total++;
+        ++Total;
     }
 
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
