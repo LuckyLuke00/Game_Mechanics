@@ -1,12 +1,13 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Rendering;
 
 public class EnemyStateManager : MonoBehaviour
 {
     [SerializeField] private float _searchRadius = 1f;
     [SerializeField] private float _TimeToKeepChasing = .5f;
     [SerializeField] private Material _GhostMaterial = null;
-    [SerializeField] private Transform[] _Waypoints = null;
+    [SerializeField] private GameObject[] _waypoints = null;
 
     EnemyBaseState _currentState = null;
     public EnemyChaseState _chaseState = new EnemyChaseState();
@@ -26,24 +27,32 @@ public class EnemyStateManager : MonoBehaviour
     public GameObject PlayerGhostMesh { get => _PlayerGhostMesh; }
     public Material GhostMaterial { get => _GhostMaterial; }
     public NavMeshAgent Agent { get => _agent; set => _agent = value; }
-    public Transform[] Waypoints { get => _Waypoints; set => _Waypoints = value; }
+    public GameObject[] Waypoints { get => _waypoints; set => _waypoints = value; }
     public Vector3 LastKnownLocation { get => _lastKnownLocation; set => _lastKnownLocation = value; }
 
     private void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();
         _player = GameObject.FindGameObjectWithTag("Player");
+        // Waypoints are tagged with: "Waypoint"
+        _waypoints = GameObject.FindGameObjectsWithTag("Waypoint");
 
         // Nullchecks
         if (_player == null)
         {
-            Debug.LogError("Player not found!");
+            Debug.LogError("EnemyStateManager: _player is null!");
             return;
         }
 
         if (_agent == null)
         {
-            Debug.LogError("NavMeshAgent not found!");
+            Debug.LogError("EnemyStateManager: _agent is null!");
+            return;
+        }
+
+        if (_waypoints == null)
+        {
+            Debug.LogError("EnemyStateManager: _waypoints is null!");
             return;
         }
         

@@ -15,7 +15,7 @@ public class EnemyPatrolState : EnemyBaseState
     public override void UpdateState(EnemyStateManager enemy)
     {
         // Draw a line to the waypoint
-        Debug.DrawLine(enemy.transform.position, enemy.Waypoints[_destination].position, Color.red);
+        Debug.DrawLine(enemy.transform.position, enemy.Waypoints[_destination].transform.position, Color.red);
 
         if (enemy.PlayerInSight())
         {
@@ -23,20 +23,28 @@ public class EnemyPatrolState : EnemyBaseState
         }
 
         // Randomly move around the map
-        if (Vector3.Distance(enemy.transform.position, enemy.Waypoints[_destination].position) < .5f)
+        if (Vector3.Distance(enemy.transform.position, enemy.Waypoints[_destination].transform.position) < .5f)
         {
-            _destination = Random.Range(0, enemy.Waypoints.Length);
+            _destination = GetRandomWaypoint(enemy);
         }
 
-        enemy.Agent.destination = enemy.Waypoints[_destination].position;
+        enemy.Agent.destination = enemy.Waypoints[_destination].transform.position;
     }
     private int GetClosestWaypointTo(EnemyStateManager enemy, Vector3 target)
     {
         int closestWaypoint = 0;
         float closestDistance = Mathf.Infinity;
-        for (int i = 0; i < enemy.Waypoints.Length; i++)
+
+        if (enemy.Waypoints.Length < 1)
         {
-            float distance = Vector3.Distance(target, enemy.Waypoints[i].position);
+            Debug.LogError("No waypoints found!");
+            return closestWaypoint;
+        }
+
+        for (int i = 0; i < enemy.Waypoints.Length; ++i)
+        {
+            // Use square distance
+            float distance = (enemy.Waypoints[i].transform.position - target).sqrMagnitude;
             if (distance < closestDistance)
             {
                 closestDistance = distance;
@@ -44,5 +52,10 @@ public class EnemyPatrolState : EnemyBaseState
             }
         }
         return closestWaypoint;
+    }
+
+    private int GetRandomWaypoint(EnemyStateManager enemy)
+    {
+        return Random.Range(0, enemy.Waypoints.Length);
     }
 }

@@ -8,9 +8,6 @@ public class DamageBehaviour : MonoBehaviour
     {
         PlayerCharacter player = other.GetComponent<PlayerCharacter>();
 
-        if (player != null)
-        {
-            player.Kill();
-        }
+        if (player != null) player.Kill();
     }
 }

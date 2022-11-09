@@ -1,20 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class GateBehaviour : MonoBehaviour
 {
     [SerializeField] private float _gateSpeed = 1f;
+    [SerializeField] private int _collectiblesToOpen = 0;
 
     private BoxCollider _collider = null;
     private EnemyStateManager _enemy = null;
+    private GameManager _gameManager = null;
     private float _gateHeight = 0.0f; // y-Scale
-    private int _collectibles = 0;
 
     private void Awake()
     {
+        _gameManager = FindObjectOfType<GameManager>();
+        if (_gameManager == null)
+        {
+            Debug.LogError("GateBehaviour: _gameManager is null!");
+            return;
+        }
+
         // Get the navmesh agent and check if it exists
         _enemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyStateManager>();
         if (_enemy == null)
@@ -34,24 +38,25 @@ public class GateBehaviour : MonoBehaviour
 
         // Get the gate height: y-Scale
         _gateHeight = transform.localScale.y;
+
+        if (_collectiblesToOpen > Collectible._total) _collectiblesToOpen = Collectible._total;
     }
 
     private void Update()
     {
-        // When the gate is at half the height of the gate up or down, stop moving the gate
-
         // If the enemy is in chase mode, move the gate up
-        if (Collectible._total != _collectibles || _enemy.CurrentState == _enemy._chaseState)
+        if (_collectiblesToOpen > _gameManager.Collectibles || _enemy.CurrentState == _enemy._chaseState)
         {
-            _collider.enabled = true;
-            if (transform.position.y < _gateHeight / 2)
-            {
-                transform.Translate(Vector3.up * _gateSpeed * Time.deltaTime);
-                return;
-            }
+            CloseGate();
+            return;
         }
 
-        // If the enemy is not in chase mode and the all the keys have been collected, move the gate down
+        OpenGate();
+    }
+
+    private void OpenGate()
+    {
+        // When the gate is at half the height of the gate, stop moving the gate
         if (transform.position.y > -_gateHeight / 2)
         {
             transform.Translate(Vector3.down * _gateSpeed * Time.deltaTime);
@@ -62,17 +67,12 @@ public class GateBehaviour : MonoBehaviour
         _collider.enabled = false;
     }
 
-    private void OnEnable()
+    private void CloseGate()
     {
-        Collectible.OnCollectibleCollected += OnCollectibleCollected;
-    }
-    private void OnDisable()
-    {
-        Collectible.OnCollectibleCollected -= OnCollectibleCollected;
-    }
-
-    private void OnCollectibleCollected()
-    {
-        ++_collectibles;
+        _collider.enabled = true;
+        if (transform.position.y < _gateHeight / 2)
+        {
+            transform.Translate(Vector3.up * _gateSpeed * Time.deltaTime);
+        }
     }
 }

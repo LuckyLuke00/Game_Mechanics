@@ -11,7 +11,6 @@ public class Clock : MonoBehaviour
     private float _bestTime = 0f;
 
     // Getters and Setters
-    public bool IsPaused { get => _isPaused; set => _isPaused = value; }
     public float CurrentTime { get => _currentTime; set => _currentTime = value; }
     public float BestTime { get => _bestTime; set => _bestTime = value; }
 
@@ -28,7 +27,6 @@ public class Clock : MonoBehaviour
         }
 
         DisplayText();
-        Show();
     }
 
     private void Update()
@@ -48,7 +46,7 @@ public class Clock : MonoBehaviour
     }
 
     // Get the time in m:ss::mmm format with a bool to display the miliseconds
-    public string GetTimeText(float time, bool displayMiliseconds = false)
+    public static string GetTimeText(float time, bool displayMiliseconds = false)
     {
         int minutes = Mathf.FloorToInt(time / 60);
         int seconds = Mathf.FloorToInt(time % 60);
@@ -61,12 +59,14 @@ public class Clock : MonoBehaviour
 
         return $"{minutes:0}:{seconds:00}";
     }
-    public void Hide()
+
+    public void PauseTimer()
     {
-        gameObject.SetActive(false);
+        _isPaused = true;
     }
-    public void Show()
+
+    public void ResumeTimer()
     {
-        gameObject.SetActive(true);
+        _isPaused = false;
     }
 }

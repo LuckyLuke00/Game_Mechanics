@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _searchRadius: 10
-  _searchTime: 3
+  _TimeToKeepChasing: 0.5
   _GhostMaterial: {fileID: 2100000, guid: fa1b6cf7f4d908e459177fcea6dde944, type: 2}
   _Waypoints:
   - {fileID: 0}
