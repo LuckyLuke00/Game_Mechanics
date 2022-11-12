@@ -30,6 +30,12 @@ public class EnemyInvestigateState : EnemyBaseState
 
         _investigationTimer -= Time.deltaTime;
 
+        // Predict player direction
+        Vector3 playerDirection = enemy.Player.transform.position - enemy.LastKnownLocation;
+        Vector3 predictedPlayerPosition = enemy.LastKnownLocation + playerDirection;
+
+        enemy.Agent.destination = predictedPlayerPosition;
+
         if (enemy.Agent.pathStatus == NavMeshPathStatus.PathPartial)
         {
             enemy.Agent.destination = enemy.Agent.pathEndPosition;

@@ -3,14 +3,15 @@ using UnityEngine.AI;
 
 public class EnemyStateManager : MonoBehaviour
 {
-    [SerializeField] private float _searchRadius = 1f;
+    //[SerializeField] private float _searchRadius = 1f;
     [SerializeField] private float _TimeToKeepChasing = .5f;
     [SerializeField] private Material _GhostMaterial = null;
-    [SerializeField] private GameObject[] _waypoints = null;
+    /*[SerializeField]*/ private GameObject[] _waypoints = null;
 
     private EnemyBaseState _currentState = null;
     public EnemyChaseState _chaseState = new EnemyChaseState();
     public EnemyPatrolState _patrolState = new EnemyPatrolState();
+    public EnemySearchState _investigateState = new EnemySearchState();
     public EnemySearchState _searchState = new EnemySearchState();
 
     private GameObject _player = null;
@@ -21,7 +22,7 @@ public class EnemyStateManager : MonoBehaviour
     // Getters and setters
     public EnemyBaseState CurrentState { get => _currentState; }
 
-    public float SearchRadius { get => _searchRadius; }
+    //public float SearchRadius { get => _searchRadius; }
     public float TimeToKeepChasing { get => _TimeToKeepChasing; }
     public GameObject Player { get => _player; set => _player = value; }
     public GameObject PlayerGhostMesh { get => _PlayerGhostMesh; }

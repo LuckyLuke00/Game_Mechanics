@@ -1,18 +1,32 @@
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
 public class GateBehaviour : MonoBehaviour
 {
-    [SerializeField] private float _gateSpeed = 1f;
-
-    // Checkbox if the gate should only open when all collectibles are collected
+    [Tooltip("Makes it so that the gate closes after another key is collected (if the gate has been opened), and stays closed")]
+    [SerializeField] private bool _closeAfterCollect = false;
+    
+    [Tooltip("Makes it so the gate ignores the enemy's state, so it can open even if the enemy is chasing the player")]
+    [SerializeField] private bool _ignoreEnemyState = false;
+    
+    [Tooltip("Makes it so the gate only opens when all collectibles in the current level are collected")]
     [SerializeField] private bool _requireAllCollectiblesToOpen = false;
+    
+    [Tooltip("Makes it so the gate can only be opened once, and stays open after that")]
+    [SerializeField] private bool _stayOpen = false;
 
-    // When _requireAllCollectiblesToOpen is true disable _collectiblesToOpen
+    [Tooltip("The speed at which the gate opens and closes")]
+    [SerializeField] private float _gateSpeed = 1f;
+    
+    [Tooltip("The number of collectibles needed to open the gate")]
     [SerializeField] private int _collectiblesToOpen = 0;
 
     private BoxCollider _collider = null;
     private EnemyStateManager _enemy = null;
     private GameManager _gameManager = null;
+    private bool _isOpen = false;
+    private bool _overrideOpen = false;
+    private bool _overrideClose = false;
     private float _gateHeight = 0.0f; // y-Scale
 
     private void Awake()
@@ -62,14 +76,37 @@ public class GateBehaviour : MonoBehaviour
 
     private void Update()
     {
-        // If the enemy is in chase mode, move the gate up
-        if (_collectiblesToOpen > _gameManager.Collectibles || _enemy.CurrentState == _enemy._chaseState)
+        // If _stayOpen == true the gate will only open once
+        // After that CloseGate() will not be called
+        // Else if _closeAfterCollect == true the gate will close after _collectiblesToOpen + 1 collectibles are collected
+        // the gate closes when the player is being chased and _collectiblesToOpen are less than the total number of collectibles
+        // the gate opens when the player is not being chased and _collectiblesToOpen are less than or equal to the total number of collectibles
+
+        if (_overrideOpen)
+        {
+            OpenGate();
+            return;
+        }
+
+        if (_overrideClose)
         {
             CloseGate();
             return;
         }
 
-        OpenGate();
+        if (_isOpen && _stayOpen) return;
+
+        if (_isOpen && (!_ignoreEnemyState && _enemy.CurrentState == _enemy._chaseState) || (_closeAfterCollect && _collectiblesToOpen + 1 <= _gameManager.Collectibles))
+        {
+            CloseGate();
+            return;
+        }
+
+        if ((!_isOpen && _collectiblesToOpen <= _gameManager.Collectibles) && (_ignoreEnemyState || _enemy.CurrentState != _enemy._chaseState))
+        {
+            OpenGate();
+            return;
+        }
     }
 
     private void OpenGate()
@@ -81,16 +118,38 @@ public class GateBehaviour : MonoBehaviour
             return;
         }
 
+        // Set gate's height to half the gate's height (to prevent floating point errors)
+        transform.position = new Vector3(transform.position.x, -_gateHeight / 2, transform.position.z);
+
         // Disable box collider when the gate is down
         _collider.enabled = false;
+        _isOpen = true;
     }
-
+    
     private void CloseGate()
     {
+        // Enable box collider when the gate is closing
         _collider.enabled = true;
+        _isOpen = false;
+
         if (transform.position.y < _gateHeight / 2)
         {
             transform.Translate(Vector3.up * _gateSpeed * Time.deltaTime);
+        }
+        else
+        {
+            transform.position = new Vector3(transform.position.x, _gateHeight / 2, transform.position.z);
+        }
+    }
+    public void OverrideGate(bool open)
+    {
+        if (open)
+        {
+            _overrideOpen = true;
+        }
+        else
+        {
+            _overrideClose = true;
         }
     }
 }

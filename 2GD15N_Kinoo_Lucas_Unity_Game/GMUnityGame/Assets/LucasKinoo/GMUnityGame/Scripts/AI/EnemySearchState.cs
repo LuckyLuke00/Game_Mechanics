@@ -4,7 +4,7 @@ using UnityEngine.AI;
 public class EnemySearchState : EnemyBaseState
 {
     private float _lastKnownLocationDistance = 0f;
-    private float _reachDistance = 1f;
+    private const float _reachDistance = 1f;
 
     public override void EnterState(EnemyStateManager enemy)
     {
