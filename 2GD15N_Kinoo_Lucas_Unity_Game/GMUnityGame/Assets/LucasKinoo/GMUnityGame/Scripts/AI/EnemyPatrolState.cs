@@ -30,7 +30,7 @@ public class EnemyPatrolState : EnemyBaseState
         }
 
         // Randomly move around the map
-        if (Vector3.Distance(enemy.transform.position, enemy.Waypoints[_destination].transform.position) < .5f)
+        if (Vector3.Distance(enemy.transform.position, enemy.Waypoints[_destination].transform.position) < .5f && enemy.Waypoints.Length > 1)
         {
             _destination = GetRandomWaypoint(enemy);
         }

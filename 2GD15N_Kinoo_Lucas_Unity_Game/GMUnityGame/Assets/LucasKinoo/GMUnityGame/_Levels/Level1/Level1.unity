@@ -368,18 +368,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 356405779}
     m_Modifications:
-    - target: {fileID: 7431367493356705409, guid: 86dd26771f9c3a24bafd16be82ebc840, type: 3}
-      propertyPath: m_BackGroundColor.b
-      value: 0.16470589
-      objectReference: {fileID: 0}
-    - target: {fileID: 7431367493356705409, guid: 86dd26771f9c3a24bafd16be82ebc840, type: 3}
-      propertyPath: m_BackGroundColor.g
-      value: 0.16470589
-      objectReference: {fileID: 0}
-    - target: {fileID: 7431367493356705409, guid: 86dd26771f9c3a24bafd16be82ebc840, type: 3}
-      propertyPath: m_BackGroundColor.r
-      value: 0.7882353
-      objectReference: {fileID: 0}
     - target: {fileID: 7431367494381348049, guid: 86dd26771f9c3a24bafd16be82ebc840, type: 3}
       propertyPath: m_Name
       value: CameraTarget
@@ -390,7 +378,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7431367494381348055, guid: 86dd26771f9c3a24bafd16be82ebc840, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -7.5
       objectReference: {fileID: 0}
     - target: {fileID: 7431367494381348055, guid: 86dd26771f9c3a24bafd16be82ebc840, type: 3}
       propertyPath: m_LocalPosition.y
@@ -398,7 +386,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7431367494381348055, guid: 86dd26771f9c3a24bafd16be82ebc840, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -17.5
       objectReference: {fileID: 0}
     - target: {fileID: 7431367494381348055, guid: 86dd26771f9c3a24bafd16be82ebc840, type: 3}
       propertyPath: m_LocalRotation.w
@@ -651,7 +639,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2422103951096523421, guid: eee2da2624c484d459aafada8d22b855, type: 3}
       propertyPath: _gateSpeed
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2422103951096523421, guid: eee2da2624c484d459aafada8d22b855, type: 3}
       propertyPath: _collectiblesToOpen
@@ -2971,6 +2959,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1432225995}
     m_Modifications:
+    - target: {fileID: 610622965672950356, guid: d81a4cd3e014fe5408d68734596ff395, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4390134431160340617, guid: d81a4cd3e014fe5408d68734596ff395, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4757564755007595907, guid: d81a4cd3e014fe5408d68734596ff395, type: 3}
       propertyPath: m_RootOrder
       value: 0
