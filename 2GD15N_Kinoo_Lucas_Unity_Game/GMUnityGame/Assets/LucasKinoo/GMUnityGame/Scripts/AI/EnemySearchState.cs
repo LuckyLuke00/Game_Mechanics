@@ -10,6 +10,7 @@ public class EnemySearchState : EnemyBaseState
     {
         Debug.Log("Entering Search State");
         SpawnTransparentPlayerMesh(enemy);
+        enemy.PlayAlertSound = false;
     }
 
     public override void UpdateState(EnemyStateManager enemy)

@@ -12,13 +12,18 @@ public class Collectible : MonoBehaviour
     private void Awake()
     {
         ++Total;
+
+        if (_pickupSound == null)
+        {
+            Debug.LogWarning("Collectible: _pickupSound is null!");
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            SoundManager._instance.PlaySound(_pickupSound);
+            if(_pickupSound) SoundManager._instance.PlaySound(_pickupSound);
             
             OnCollectibleCollected?.Invoke();
             Destroy(gameObject);

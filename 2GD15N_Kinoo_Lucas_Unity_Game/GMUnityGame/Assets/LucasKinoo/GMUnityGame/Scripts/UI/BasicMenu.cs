@@ -4,21 +4,12 @@ using UnityEngine;
 public class BasicMenu : MonoBehaviour
 {
     private const string _defaultSubtitle = "NOT COMPLETED";
-    private GameManager _gameManager = null;
     protected TextMeshProUGUI _subtitle = null;
     protected static string _subtitleText = _defaultSubtitle;
     protected Clock _clock = null;
 
     private void Awake()
     {
-        _gameManager = FindObjectOfType<GameManager>();
-
-        if (_gameManager == null)
-        {
-            Debug.LogError("BasicMenu: _gameManager is null!");
-            return;
-        }
-
         _clock = FindObjectOfType<Clock>(true);
         if (_clock == null)
         {
@@ -74,22 +65,41 @@ public class BasicMenu : MonoBehaviour
     }
 
     // Buttons
+    public void ContinueButton()
+    {
+        GameManager.LoadNextLevel();
+    }
+
     public void RestartButton()
     {
         // Restart the game
         GameManager.RestartGame();
     }
 
+    public void LevelSelectButton()
+    {
+        // Load the level select scene
+        BasicMenu levelSelectMenu = FindObjectOfType<LevelSelector>(true).GetComponentInParent<BasicMenu>(true);
+        if (!levelSelectMenu)
+        {
+            Debug.LogError("BasicMenu: LevelSelectMenu is null!");
+            return;
+        }
+
+        MenuManager.ToggleMenu(levelSelectMenu);
+        Hide();
+    }
+
     public void ResetProgressButton()
     {
         // Reset the progress
-        _gameManager.ResetProgress();
+        GameManager.ResetProgress();
     }
 
     public void QuitButton()
     {
         // Quit the game
-        _gameManager.QuitGame();
+        GameManager.QuitGame();
     }
 
     public void Hide()

@@ -86,20 +86,40 @@ public class GameManager : MonoBehaviour
             return string.Empty;
         }
     }    
-
     public static void RestartGame()
     {
-        Collectible.Total = 0;
+        ResetLevel();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void ResetProgress()
+    private static void ResetLevel()
+    {
+        Collectible.Total = 0;
+    }
+
+    public static void ResetProgress()
     {
         PlayerPrefs.DeleteAll();
         OnResetProgress?.Invoke();
     }
+    
+    public static void LoadNextLevel()
+    {
+        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        ResetLevel();
 
-    public void QuitGame()
+        // Check if the next scene exists
+        if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
+        {
+            SceneManager.LoadScene(nextSceneIndex);
+        }
+        else
+        {
+            SceneManager.LoadScene(0);
+        }
+    }
+
+    public static void QuitGame()
     {
         Application.Quit();
 

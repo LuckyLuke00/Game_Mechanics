@@ -5,7 +5,6 @@ public class MenuManager : MonoBehaviour
 {
     // Handles opening and closing menus
     private GameOverMenu _gameOverMenu = null;
-
     private GameWonMenu _gameWonMenu = null;
 
     // Create an event for when the menu is active
@@ -38,7 +37,7 @@ public class MenuManager : MonoBehaviour
         _gameWonMenu.Hide();
     }
 
-    private void ToggleMenu(BasicMenu menu)
+    public static void ToggleMenu(BasicMenu menu)
     {
         // Check if the menu is active
         if (menu.gameObject.activeSelf)

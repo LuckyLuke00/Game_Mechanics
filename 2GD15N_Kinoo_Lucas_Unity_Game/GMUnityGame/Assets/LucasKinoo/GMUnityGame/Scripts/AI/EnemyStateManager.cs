@@ -19,8 +19,14 @@ public class EnemyStateManager : MonoBehaviour
     private GameObject _PlayerGhostMesh = null;
     private NavMeshAgent _agent = null;
     private Vector3 _lastKnownLocation = Vector3.zero;
+    
+    // This variable is used to play the alert sound only when EnterState is called by patrol state
+    // This is to prevent it from playing a lot
+    private bool _playAlertSound = true;
 
     // Getters and setters
+    public AudioClip AlertSound { get => _AlertSound; }
+    public bool PlayAlertSound { get => _playAlertSound; set => _playAlertSound = value; }
     public EnemyBaseState CurrentState { get => _currentState; }
     public float TimeToKeepChasing { get => _TimeToKeepChasing; }
     public GameObject Player { get => _player; set => _player = value; }
@@ -29,7 +35,6 @@ public class EnemyStateManager : MonoBehaviour
     public Material GhostMaterial { get => _GhostMaterial; }
     public NavMeshAgent Agent { get => _agent; set => _agent = value; }
     public Vector3 LastKnownLocation { get => _lastKnownLocation; set => _lastKnownLocation = value; }
-    public AudioClip AlertSound { get => _AlertSound; }
 
     private void Awake()
     {

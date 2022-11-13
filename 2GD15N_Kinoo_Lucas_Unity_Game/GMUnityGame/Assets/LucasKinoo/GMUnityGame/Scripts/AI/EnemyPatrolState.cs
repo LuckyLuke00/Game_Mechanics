@@ -10,6 +10,7 @@ public class EnemyPatrolState : EnemyBaseState
         Debug.Log("Entering Patrol State");
         // Go to closest waypoint
         _destination = GetClosestWaypointTo(enemy, enemy.Player.transform.position);
+        enemy.PlayAlertSound = true;
     }
 
     public override void UpdateState(EnemyStateManager enemy)
