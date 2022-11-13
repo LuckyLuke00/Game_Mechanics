@@ -6,7 +6,10 @@ public class GameManager : MonoBehaviour
 {
     private Clock _clock = null;
     private int _collectibles = 0;
-
+    
+    // PlayerPrefs
+    private string _prefBestTime = string.Empty;
+    
     public static event Action OnResetProgress;
 
     //Getter for _collectibles
@@ -44,7 +47,7 @@ public class GameManager : MonoBehaviour
         _clock.PauseTimer();
 
         // Check if "BestTime" exists
-        if (PlayerPrefs.HasKey("BestTime"))
+        if (PlayerPrefs.HasKey(_prefBestTime))
         {
             _clock.BestTime = Mathf.Min(_clock.CurrentTime, _clock.BestTime);
         }
@@ -53,12 +56,15 @@ public class GameManager : MonoBehaviour
             _clock.BestTime = _clock.CurrentTime;
         }
 
-        PlayerPrefs.SetFloat("BestTime", _clock.BestTime);
+        PlayerPrefs.SetFloat(_prefBestTime, _clock.BestTime);
     }
 
     private void LoadHighscores()
     {
-        _clock.BestTime = PlayerPrefs.GetFloat("BestTime");
+        // Set the prefs
+        _prefBestTime = $"Best Time - {SceneManager.GetActiveScene().name}";
+        
+        _clock.BestTime = PlayerPrefs.GetFloat(_prefBestTime);
     }
 
     public static void RestartGame()

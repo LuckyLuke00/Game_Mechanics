@@ -76,12 +76,6 @@ public class GateBehaviour : MonoBehaviour
 
     private void Update()
     {
-        // If _stayOpen == true the gate will only open once
-        // After that CloseGate() will not be called
-        // Else if _closeAfterCollect == true the gate will close after _collectiblesToOpen + 1 collectibles are collected
-        // the gate closes when the player is being chased and _collectiblesToOpen are less than the total number of collectibles
-        // the gate opens when the player is not being chased and _collectiblesToOpen are less than or equal to the total number of collectibles
-
         if (_overrideOpen)
         {
             OpenGate();
@@ -130,7 +124,6 @@ public class GateBehaviour : MonoBehaviour
     {
         // Enable box collider when the gate is closing
         _collider.enabled = true;
-        _isOpen = false;
 
         if (transform.position.y < _gateHeight / 2)
         {
@@ -139,6 +132,7 @@ public class GateBehaviour : MonoBehaviour
         else
         {
             transform.position = new Vector3(transform.position.x, _gateHeight / 2, transform.position.z);
+            _isOpen = false;
         }
     }
     public void OverrideGate(bool open)
