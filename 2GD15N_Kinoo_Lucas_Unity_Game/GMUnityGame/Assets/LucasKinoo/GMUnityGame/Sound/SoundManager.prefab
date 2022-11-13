@@ -137,7 +137,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7965454087630842367}
-  - component: {fileID: 7965454087630842366}
+  - component: {fileID: 6406553541462809895}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -161,7 +161,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7965454087630842366
+--- !u!114 &6406553541462809895
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -174,3 +174,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _effectsSource: {fileID: 7965454087192715221}
+  _alertSound: {fileID: 8300000, guid: 122f0362c8dad514aae0b914d1325c9d, type: 3}
+  _pickupSound: {fileID: 8300000, guid: 8806c28d92b11274ea18ef9f686b553c, type: 3}
+  _winSound: {fileID: 8300000, guid: f30c331e645ad994fafb51b178f72abd, type: 3}

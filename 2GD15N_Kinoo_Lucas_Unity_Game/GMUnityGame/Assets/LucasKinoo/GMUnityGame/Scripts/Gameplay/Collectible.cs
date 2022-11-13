@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class Collectible : MonoBehaviour
 {
-    [SerializeField] private AudioClip _pickupSound = null;
     public static event Action OnCollectibleCollected;
 
     // Getter setter
@@ -12,19 +11,14 @@ public class Collectible : MonoBehaviour
     private void Awake()
     {
         ++Total;
-
-        if (_pickupSound == null)
-        {
-            Debug.LogWarning("Collectible: _pickupSound is null!");
-        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            if(_pickupSound) SoundManager._instance.PlaySound(_pickupSound);
-            
+            SoundManager._instance.PlaySound(SoundManager._instance.PickupSound);
+
             OnCollectibleCollected?.Invoke();
             Destroy(gameObject);
         }

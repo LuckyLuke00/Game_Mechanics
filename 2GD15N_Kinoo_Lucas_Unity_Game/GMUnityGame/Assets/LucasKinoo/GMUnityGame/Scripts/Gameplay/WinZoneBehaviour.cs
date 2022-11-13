@@ -22,7 +22,8 @@ public class WinZoneBehaviour : MonoBehaviour
     {
         if (other.CompareTag("Player") && !_hasWon)
         {
-            Debug.Log("Player has entered the win zone!");
+            SoundManager._instance.PlaySound(SoundManager._instance.WinSound);
+            
             _hasWon = true;
             
             _winZoneGate.OverrideGate(false);

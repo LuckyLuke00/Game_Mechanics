@@ -4,7 +4,6 @@ using UnityEngine.AI;
 public class EnemyStateManager : MonoBehaviour
 {
     [SerializeField] private float _TimeToKeepChasing = .5f;
-    [SerializeField] private AudioClip _AlertSound = null;
     [SerializeField] private Material _GhostMaterial = null;
     
     private GameObject[] _waypoints = null;
@@ -25,7 +24,6 @@ public class EnemyStateManager : MonoBehaviour
     private bool _playAlertSound = true;
 
     // Getters and setters
-    public AudioClip AlertSound { get => _AlertSound; }
     public bool PlayAlertSound { get => _playAlertSound; set => _playAlertSound = value; }
     public EnemyBaseState CurrentState { get => _currentState; }
     public float TimeToKeepChasing { get => _TimeToKeepChasing; }
