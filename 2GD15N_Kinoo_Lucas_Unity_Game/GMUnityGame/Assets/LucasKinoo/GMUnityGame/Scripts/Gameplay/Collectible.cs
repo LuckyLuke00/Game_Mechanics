@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Collectible : MonoBehaviour
 {
+    [SerializeField] private AudioClip _pickupSound = null;
     public static event Action OnCollectibleCollected;
 
     // Getter setter
@@ -17,6 +18,8 @@ public class Collectible : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            SoundManager._instance.PlaySound(_pickupSound);
+            
             OnCollectibleCollected?.Invoke();
             Destroy(gameObject);
         }

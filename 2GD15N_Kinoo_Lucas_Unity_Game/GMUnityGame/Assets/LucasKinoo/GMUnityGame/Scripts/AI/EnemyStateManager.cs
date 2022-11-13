@@ -3,10 +3,11 @@ using UnityEngine.AI;
 
 public class EnemyStateManager : MonoBehaviour
 {
-    //[SerializeField] private float _searchRadius = 1f;
     [SerializeField] private float _TimeToKeepChasing = .5f;
+    [SerializeField] private AudioClip _AlertSound = null;
     [SerializeField] private Material _GhostMaterial = null;
-    /*[SerializeField]*/ private GameObject[] _waypoints = null;
+    
+    private GameObject[] _waypoints = null;
 
     private EnemyBaseState _currentState = null;
     public EnemyChaseState _chaseState = new EnemyChaseState();
@@ -21,15 +22,14 @@ public class EnemyStateManager : MonoBehaviour
 
     // Getters and setters
     public EnemyBaseState CurrentState { get => _currentState; }
-
-    //public float SearchRadius { get => _searchRadius; }
     public float TimeToKeepChasing { get => _TimeToKeepChasing; }
     public GameObject Player { get => _player; set => _player = value; }
     public GameObject PlayerGhostMesh { get => _PlayerGhostMesh; }
+    public GameObject[] Waypoints { get => _waypoints; set => _waypoints = value; }
     public Material GhostMaterial { get => _GhostMaterial; }
     public NavMeshAgent Agent { get => _agent; set => _agent = value; }
-    public GameObject[] Waypoints { get => _waypoints; set => _waypoints = value; }
     public Vector3 LastKnownLocation { get => _lastKnownLocation; set => _lastKnownLocation = value; }
+    public AudioClip AlertSound { get => _AlertSound; }
 
     private void Awake()
     {

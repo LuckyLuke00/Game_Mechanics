@@ -178,15 +178,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd8d46bcbe86fbf4695b38c0705c1409, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _searchRadius: 10
   _TimeToKeepChasing: 0.5
+  _AlertSound: {fileID: 8300000, guid: 2bfa79fb537e6b6459eb26a5503b29b2, type: 3}
   _GhostMaterial: {fileID: 2100000, guid: fa1b6cf7f4d908e459177fcea6dde944, type: 2}
-  _Waypoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}

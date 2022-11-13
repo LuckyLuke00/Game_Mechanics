@@ -2,6 +2,12 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Create a static struct of key names
+public static class PrefNames
+{
+    public static readonly string BestTime = "Best Time";
+}
+
 public class GameManager : MonoBehaviour
 {
     private Clock _clock = null;
@@ -62,10 +68,24 @@ public class GameManager : MonoBehaviour
     private void LoadHighscores()
     {
         // Set the prefs
-        _prefBestTime = $"Best Time - {SceneManager.GetActiveScene().name}";
+        _prefBestTime = $"{PrefNames.BestTime} - {SceneManager.GetActiveScene().name}";
         
         _clock.BestTime = PlayerPrefs.GetFloat(_prefBestTime);
     }
+
+    public static string GetPref(string prefName, string levelName)
+    {
+        string key = $"{PrefNames.BestTime} - {levelName}";
+        
+        if (PlayerPrefs.HasKey(key))
+        {
+            return key;
+        }
+        else
+        {
+            return string.Empty;
+        }
+    }    
 
     public static void RestartGame()
     {

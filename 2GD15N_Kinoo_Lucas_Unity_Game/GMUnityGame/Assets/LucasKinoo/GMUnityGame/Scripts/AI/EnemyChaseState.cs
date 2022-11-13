@@ -8,6 +8,7 @@ public class EnemyChaseState : EnemyBaseState
     public override void EnterState(EnemyStateManager enemy)
     {
         Debug.Log("Entering Chase State");
+        SoundManager._instance.PlaySound(enemy.AlertSound);
     }
 
     public override void UpdateState(EnemyStateManager enemy)
