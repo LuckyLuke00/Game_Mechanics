@@ -25,8 +25,8 @@ public class GateBehaviour : MonoBehaviour
     private EnemyStateManager _enemy = null;
     private GameManager _gameManager = null;
     private bool _isOpen = false;
-    private bool _overrideOpen = false;
     private bool _overrideClose = false;
+    private bool _overrideOpen = false;
     private float _gateHeight = 0.0f; // y-Scale
 
     private void Awake()
@@ -128,12 +128,11 @@ public class GateBehaviour : MonoBehaviour
         if (transform.position.y < _gateHeight / 2)
         {
             transform.Translate(Vector3.up * _gateSpeed * Time.deltaTime);
+            return;
         }
-        else
-        {
-            transform.position = new Vector3(transform.position.x, _gateHeight / 2, transform.position.z);
-            _isOpen = false;
-        }
+        
+        transform.position = new Vector3(transform.position.x, _gateHeight / 2, transform.position.z);
+        _isOpen = false;
     }
     public void OverrideGate(bool open)
     {
