@@ -105,7 +105,7 @@ public class LevelSelector : MonoBehaviour
     public void LoadLevel(int levelIndex)
     {
         // Load the level
-        SceneManager.LoadScene(_levelNames[levelIndex]);
+        GameManager.LoadLevel(_levelNames[levelIndex]);
     }
 
     private void SetButtonOnClick()

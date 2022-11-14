@@ -6,14 +6,16 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioSource _effectsSource = null;
 
     [SerializeField] private AudioClip _alertSound = null;
+    [SerializeField] private AudioClip _deathSound = null;
     [SerializeField] private AudioClip _pickupSound = null;
     [SerializeField] private AudioClip _winSound = null;
 
     // Getters
     public AudioClip AlertSound => _alertSound;
+    public AudioClip DeathSound => _deathSound;
     public AudioClip PickupSound => _pickupSound;
     public AudioClip WinSound => _winSound;
-    
+
 
     private void Awake()
     {

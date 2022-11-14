@@ -102,7 +102,13 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.DeleteAll();
         OnResetProgress?.Invoke();
     }
-    
+
+    public static void LoadLevel(string levelName)
+    {
+        ResetLevel();
+        SceneManager.LoadScene(levelName);
+    }
+
     public static void LoadNextLevel()
     {
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;

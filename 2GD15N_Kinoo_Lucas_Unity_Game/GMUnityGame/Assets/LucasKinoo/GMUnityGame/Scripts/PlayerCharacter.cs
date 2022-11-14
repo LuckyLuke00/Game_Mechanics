@@ -48,6 +48,7 @@ public class PlayerCharacter : BasicCharacter
     {
         if (!_godMode)
         {
+            SoundManager._instance.PlaySound(SoundManager._instance.DeathSound);
             OnPlayerDeath?.Invoke();
             Destroy(gameObject);
         }
