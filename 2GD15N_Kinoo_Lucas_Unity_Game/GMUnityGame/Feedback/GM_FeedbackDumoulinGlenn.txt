@@ -1,5 +1,0 @@
-I would add more than just one enemy to make avoiding them a little more challenging.
-
-A indication telling if you get closer or further from the goal would be nice.
-
-Controls feel good.

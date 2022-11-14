@@ -1,8 +1,0 @@
-mechanics: - Mechanics are easy to grasp. 
-	   - The Enemy Searching for you works very well and its fun to shake him off	
-           - In a future stage the obvious change would be more levels and maybe more enemies to make it harder
-
-player feedback: 
-
-		- There is some player feedback like the timer
-		- Maybe add an effect when the enemy notices you so that it is clear for the player that he needs to run	
